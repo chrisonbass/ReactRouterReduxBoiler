@@ -1,0 +1,12 @@
+@import "my_vars";
+@import "../assets/icomoon/style";
+@import "../../node_modules/font-awesome/scss/font-awesome";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  color: $text-color;
+  font-family: $font-trebuchet;
+}
+
+@import "assets/fonts";
+

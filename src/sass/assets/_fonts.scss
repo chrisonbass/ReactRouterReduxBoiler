@@ -1,0 +1,88 @@
+/* Webfont: Lato-Italic */
+@font-face {
+    font-family: 'LatoWeb';
+    src: url('/fonts/Lato-Italic.eot'); /* IE9 Compat Modes */
+    src: url('/fonts/Lato-Italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('/fonts/Lato-Italic.woff2') format('woff2'), /* Modern Browsers */
+         url('/fonts/Lato-Italic.woff') format('woff'), /* Modern Browsers */
+         url('/fonts/Lato-Italic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: Lato-Regular */
+@font-face {
+    font-family: 'LatoWeb';
+    src: url('/fonts/Lato-Regular.eot'); /* IE9 Compat Modes */
+    src: url('/fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('/fonts/Lato-Regular.woff2') format('woff2'), /* Modern Browsers */
+         url('/fonts/Lato-Regular.woff') format('woff'), /* Modern Browsers */
+         url('/fonts/Lato-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Raleway Webfont";
+  src: url('/fonts/raleway-regular.eot');
+  src: url('/fonts/raleway-regular.eot?#iefix') format('embedded-opentype'), 
+       url('/fonts/raleway-regular.woff') format('woff'),
+       url('/fonts/raleway-regular.ttf') format('truetype'), 
+       url('/fonts/raleway-regular.svg#ralewayregular') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('/fonts/Roboto-Regular.eot');
+  src: url('/fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'), 
+       url('/fonts/Roboto-Regular.woff') format('woff'),
+       url('/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face{
+  font-family: 'ACaslon-Italic';
+  src:url("/fonts/ACaslon-Italic.eot");
+  src:url("/fonts/ACaslon-Italic.eot?#iefix") format("embedded-opentype"),
+      url("/fonts/ACaslon-Italic.woff") format("woff"),
+      url("/fonts/ACaslon-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Linearicons";
+  src: url("/fonts/Linearicons.ttf") format("truetype"); /* Safari, Android, iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import "linearIcon";
+
+.font-trebuchet {
+  font-family: $font-trebuchet;
+}
+
+.font-verdana {
+  font-family: $font-verdana;
+}
+
+.font-lato {
+  font-family: $font-lato;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.font-raleway {
+  font-family: $font-raleway;
+}
+
+.font-adobe {
+  font-family: $font-adobe-caslon;
+}
+
