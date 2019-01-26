@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import mapper from '../../container';
 
-
 const defaultState = {
   count: 0,
   label: "Music",

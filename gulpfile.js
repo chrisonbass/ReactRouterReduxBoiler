@@ -7,6 +7,7 @@ var gulp = require('gulp'),
   buffer = require('vinyl-buffer'),
 
   browserify = require('browserify'),
+  envify = require('envify'),
   watchify = require('watchify'),
   babelify = require('babelify'),
   sourcemaps = require('gulp-sourcemaps'),
@@ -60,8 +61,13 @@ function compile(watch) {
   var bundler = watchify(
     browserify('./src/index.js', {
       debug: !isProduction,
-    }).transform(babelify, { 
+    })
+
+    .transform(babelify, { 
       sourceMaps: !isProduction
+    })
+    .transform(envify,{
+      NODE_ENV: isProduction ? 'production' : 'development'
     })
   );
 

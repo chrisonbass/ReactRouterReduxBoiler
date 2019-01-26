@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
+import Build from './util/Build';
 /* 
  * rootReducer from /reducers/index combines all
  * reducers into one and maintains the entire state
@@ -28,7 +29,15 @@ const defaultState = {
  * activates the plugin for debugging.  This should be
  * removed for live site
  */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+var composeEnhancers;
+
+if ( Build.isProduction === true ){
+  composeEnhancers = (r) => {
+    return r;
+  };
+} else {
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+}
 
 const store = createStore(
   rootReducer, 
