@@ -18,12 +18,17 @@ var gulp = require('gulp'),
 
   isProduction = process.env.NODE_ENV === 'production' ? true : false;
 
+
+// Colors for Logging
+const Reset = "\x1b[0m",
+  FgRed = "\x1b[31m",
+  FgCyan = "\x1b[36m";
+
 // Set node-sass as gulp-sass compiler
 sass.compiler = nodeSass;
 
 // Distributes Static Files
 function distributeFiles(){
-  log('Distributing Static Files');
   return gulp.src([
     './src/assets/index.html',
     // './src/assets/images/**/*.*',
@@ -33,11 +38,20 @@ function distributeFiles(){
 }
 
 function clearFiles(){
-  log('Clearing dist folder');
   return gulp.src([
     './dist/**/*.map',
   ])
   .pipe(clean());
+}
+
+// Makes text cyan in console output
+function cyanText(text){
+  return FgCyan + text + Reset;
+}
+
+// Makes text red in console output
+function redText(text){
+  return FgRed + text + Reset;
 }
 
 // Compiles JS Files
@@ -52,12 +66,13 @@ function compile(watch) {
   );
 
   function rebundle() {
-    log('Compiling JS files');
+    log( 'Compiling: ' + cyanText('Javascript Files') );
     var stream = bundler
       .bundle()
       .on('error', function (err) {
-          log.error(err);
-          this.emit('end');
+          log.error('An ' +  redText('ERROR') + ' occurred during JS Compilation');
+          log.error(err.stack);
+          // this.emit('end');
       })
       .pipe(source('script.js'));
     // Create Source Maps if in Dev mode
@@ -75,7 +90,6 @@ function compile(watch) {
 
   if (watch) {
     bundler.on('update', function () {
-      log('-> bundling...');
       rebundle();
     });
     return rebundle();
@@ -89,8 +103,8 @@ function watch() {
   return compile(true);
 }
 
-gulp.task('sass', ['distribute-static-files'], function() {
-  log('Compiling SASS files' + ( isProduction ? ' in Production' : ' in Development' ) );
+gulp.task('sass', ['Distributing Static Files'], function() {
+  log( 'Compiling: ' + cyanText('SASS files') + ' in ' + ( isProduction ? redText('Production') : cyanText('Development') ) );
   var stream =  gulp.src('./src/sass/style.scss')
   .pipe(sass().on('error', sass.logError))
   .pipe(autoprefixer({
@@ -107,7 +121,7 @@ gulp.task('sass:watch',['sass'], function(){
     './src/assets/index.html',
     './src/sass/style.scss',
     './src/sass/**/*.scss'
-  ], ['distribute-static-files', 'sass']);
+  ], ['Distributing Static Files', 'sass']);
 });
 
 gulp.task('build', function () {
@@ -118,11 +132,11 @@ gulp.task('watch', function () {
     return watch();
 });
 
-gulp.task('clear-files', function(){
+gulp.task('Clearing Static Files for new Builds', function(){
   return clearFiles();
 } );
 
-gulp.task('distribute-static-files', ['clear-files'], function(){
+gulp.task('Distributing Static Files', ['Clearing Static Files for new Builds'], function(){
   return distributeFiles();
 } );
 

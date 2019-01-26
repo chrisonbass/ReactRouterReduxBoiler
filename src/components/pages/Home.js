@@ -44,6 +44,7 @@ class Home extends Component {
         "value"
       ],
       isDifferent = false;
+
     fields.forEach( (f) => {
       if ( isDifferent === true ){
         return;
