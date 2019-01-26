@@ -6,18 +6,29 @@ A web boilerplate for React, React Router, Redux, and Gulp
 npm install
 ```
 
-## Create Dev Build
+## Create Dev Build of CSS
 ```
-npm test
+npm run gulp-sass
 ```
 
-## Create Production Build
+## Create Dev Build of JS
 ```
-npm run build
+npm run gulp-js
+```
+
+## Create Production Build of CSS
+```
+npm run build-sass
+```
+
+## Create Production Build of JS
+```
+npm run build-js
 ```
 
 ## Start Localhost Server
 ```
 npm start
 ```
+
 Please note, that you must build the project before starting a server.
