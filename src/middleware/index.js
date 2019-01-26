@@ -11,7 +11,6 @@
  */
 export const mainMiddleWare = (store) => (dispatcher) => (action) => {
   dispatcher(action);
-  console.log("Middleware on " + action.type + " Action");
   switch( action.type ){
     case 'INCREMENT_COUNT':
       // Stuff with INCREMENT_COUNT
