@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
   exit = require('gulp-exit'),
   clean = require('gulp-clean'),
-  rename = require('gulp-rename'),
   uglify = require('gulp-uglify'),
   log = require('fancy-log'),
   source = require('vinyl-source-stream'),
