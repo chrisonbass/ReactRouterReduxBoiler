@@ -1,0 +1,16 @@
+$dark-gray: #3e3e3e;
+$darker-gray: darken($dark-gray, 10%);
+$gray: lighten($dark-gray, 10%);
+$light-gray: lighten($gray, 10%);
+
+// Responsive Breakpoints 
+$small-break: 768px;
+$medium-break: 992px;
+$large-break: 1200px;
+
+// Padding
+$gutter: 15px;
+$baseline: 10px;
+
+
+$base-font-size: 14px;

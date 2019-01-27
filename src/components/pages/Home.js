@@ -62,12 +62,11 @@ class Home extends Component {
 
   render(){
     var props = this.props;
-
     return (
       <div className="container-fluid">
-        <h1>React Redux Boiler 2.0</h1>
+        <h1>React Redux Boiler 2.1.1</h1>
         <div>
-          <h4>{this.state.label}: {this.state.count}</h4>
+          <p>{this.state.label}: {this.state.count}</p>
         </div>
         <div>
           <select onChange={props.changeSelection} value={this.state.value}>

@@ -6,24 +6,16 @@ A web boilerplate for React, React Router, Redux, and Gulp
 npm install
 ```
 
-## Create Dev Build of CSS
+## Develop
+This command compiles javascript and sass files and watches the src directory for changes
 ```
-npm run gulp-sass
-```
-
-## Create Dev Build of JS
-```
-npm run gulp-js
+npm run watch
 ```
 
-## Create Production Build of CSS
+## Deploy in Production
+This command compiles javascript and sass for production
 ```
-npm run build-sass
-```
-
-## Create Production Build of JS
-```
-npm run build-js
+npm run build
 ```
 
 ## Start Localhost Server

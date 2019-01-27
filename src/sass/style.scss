@@ -1,14 +1,31 @@
-@import "my_vars";
+@import '../../node_modules/css-reset-and-normalize/scss/reset-and-normalize';
+@import "variables";
+@import "mixins";
 
-body {
-  color: $text-color;
-
+html, body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+  border: none;
 }
 
-.sr-only {
-  display: none;
-  position: fixed;
-  left: -1px;
+body {
+  color: $dark-gray;
+  font-size: $base-font-size;
+}
+
+p {
+  font-size: 1.2em;
+  margin-bottom: $baseline;
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    @include header;
+    font-size: 1em * ( 1.4 + (( ($i - 6) * -1 )/10));
+  } 
 }
 
 @import "assets/fonts";
+@import "components/grid";

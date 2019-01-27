@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
   exit = require('gulp-exit'),
+  es = require('event-stream'),
   clean = require('gulp-clean'),
   uglify = require('gulp-uglify'),
   log = require('fancy-log'),
@@ -74,7 +75,7 @@ function compile(watch) {
   );
 
   function rebundle() {
-    log( 'Compiling: ' + cyanText('Javascript Files') );
+    log( 'Compiling: ' + cyanText('Javascript Files') + ' in ' + ( isProduction ? cyanText('Production') : redText('Development') ) + ' mode' );
     var stream = bundler
       .bundle()
       .on('error', function (err) {
@@ -85,6 +86,7 @@ function compile(watch) {
       .pipe(source('script.js'));
     // Create Source Maps if in Dev mode
     if ( !isProduction ){ 
+      log( 'Adding Sourcemaps' );
       stream = stream.pipe(buffer())
       .pipe(sourcemaps.init({loadMaps: true}))
       .pipe(sourcemaps.write('./'))
@@ -96,22 +98,21 @@ function compile(watch) {
       .pipe(gulp.dest('./dist/js'));
   }
 
-  if (watch) {
+  if (watch === true) {
     bundler.on('update', function () {
       rebundle();
     });
     return rebundle();
-  } else {
+  } 
+  else if ( watch === 'NO_EXIT' ){
+    return rebundle();
+  }
+  else {
     return rebundle().pipe(exit());
   }
 }
 
-// Initialize watcher for JS compiler
-function watch() {
-  return compile(true);
-}
-
-gulp.task('sass', ['Distributing Static Files'], function() {
+function compileSass(){
   log( 'Compiling: ' + cyanText('SASS files') + ' in ' + ( isProduction ? redText('Production') : cyanText('Development') ) );
   var stream =  gulp.src('./src/sass/style.scss')
   .pipe(sass().on('error', sass.logError))
@@ -122,29 +123,60 @@ gulp.task('sass', ['Distributing Static Files'], function() {
     stream.pipe(cleanCss());
   }
   return stream.pipe(gulp.dest('./dist/css'));
-} );
+}
 
-gulp.task('sass:watch',['sass'], function(){
-  gulp.watch([
+// Initialize watcher for JS compiler
+function watch() {
+  return compile(true);
+}
+
+
+var distStatic = 'Distributing Static Files'; 
+function watchSass(){
+  return gulp.watch([
     './src/assets/index.html',
     './src/sass/style.scss',
     './src/sass/**/*.scss'
-  ], ['Distributing Static Files', 'sass']);
+  ], [distStatic, 'sass']);
+}
+
+gulp.task('sass', [distStatic], function() {
+  return compileSass();
+} );
+
+gulp.task('sass:watch',['sass'], function(){
+  return watchSass();
 });
 
 gulp.task('build', function () {
     return compile();
 });
 
+gulp.task('build-no-exit', function(){
+  return compile('NO_EXIT');
+} );
+
 gulp.task('watch', function () {
     return watch();
+});
+
+var fullWatch = 'Compile and Watch JS and SASS';
+gulp.task(fullWatch, ['sass', 'build-no-exit'], function () {
+  return gulp.watch([
+    './src/assets/index.html',
+    './src/sass/style.scss',
+    './src/sass/**/*.scss',
+    './src/**/*.js'
+  ], [ 'sass', 'build-no-exit' ] );
+
+  return es.concat(watch(), watchSass());
 });
 
 gulp.task('Clearing Static Files for new Builds', function(){
   return clearFiles();
 } );
 
-gulp.task('Distributing Static Files', ['Clearing Static Files for new Builds'], function(){
+gulp.task(distStatic, ['Clearing Static Files for new Builds'], function(){
   return distributeFiles();
 } );
 
@@ -163,6 +195,10 @@ switch ( buildType ){
 
   case "sass":
     tasks = [ 'sass:watch'];
+    break;
+
+  case "watch-all":
+    tasks = [fullWatch];
     break;
 }
 

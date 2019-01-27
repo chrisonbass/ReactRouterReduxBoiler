@@ -1,0 +1,47 @@
+.row {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px ( -1 * $gutter );
+}
+
+.container-fluid {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 $gutter;
+  margin: 0px;
+}
+
+$increment: 100%/12;
+@for $i from 1 through 12 {
+  .col-xs-#{$i} {
+    @include column;
+    width: ( $increment * $i );
+  }  
+}
+
+@include smallScreen {
+  @for $i from 1 through 12 {
+    .col-sm-#{$i}{
+      @include column;
+      width: ( $increment * $i );
+    }
+  }
+}
+ 
+@include mediumScreen {
+  @for $i from 1 through 12 {
+    .col-md-#{$i}{
+      @include column;
+      width: ( $increment * $i );
+    }
+  }
+}
+
+@include largeScreen {
+  @for $i from 1 through 12 {
+    .col-lg-#{$i}{
+      @include column;
+      width: ( $increment * $i );
+    }
+  }
+}

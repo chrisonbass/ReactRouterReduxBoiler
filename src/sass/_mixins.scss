@@ -1,0 +1,33 @@
+@mixin borderBox {
+  box-sizing: border-box;
+}
+
+@mixin smallScreen {
+  @media all and (min-width: $small-break) {
+    @content
+  }
+}
+
+@mixin mediumScreen {
+  @media all and (min-width: $medium-break) {
+    @content
+  }
+}
+
+@mixin largeScreen {
+  @media all and (min-width: $large-break) {
+    @content
+  }
+}
+
+@mixin column {
+  @include borderBox;
+  float: left;
+  padding: 0px $gutter;
+}
+
+@mixin header {
+  @include borderBox;
+  margin: ( $baseline * 1.5 ) 0px $baseline;
+  padding: 0px;
+}
