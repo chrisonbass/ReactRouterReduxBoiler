@@ -17,7 +17,9 @@ var gulp = require('gulp'),
   cleanCss = require('gulp-clean-css'),
   autoprefixer = require('gulp-autoprefixer'),
 
-  isProduction = process.env.NODE_ENV === 'production' ? true : false;
+  isProduction = process.env.NODE_ENV === 'production' ? true : false,
+
+  buildType = process.env.BUILD_TYPE;
 
 
 // Colors for Logging
@@ -146,8 +148,22 @@ gulp.task('Distributing Static Files', ['Clearing Static Files for new Builds'],
   return distributeFiles();
 } );
 
-var isSASS = process.env.BUILD_TYPE === 'sass';
-  jsTasks = [ 'watch' ],
-  sassTasks = [ 'sass:watch'];
+var fullBuild = 'Full Single Build';
 
-gulp.task('default', isSASS ? sassTasks : jsTasks );
+gulp.task('Full Single Build', ['sass'], () => {
+  return compile();
+} );
+
+
+var tasks = [ 'sass', fullBuild ];
+switch ( buildType ){
+  case "js":
+    tasks = [ 'watch' ];
+    break;
+
+  case "sass":
+    tasks = [ 'sass:watch'];
+    break;
+}
+
+gulp.task('default', tasks);

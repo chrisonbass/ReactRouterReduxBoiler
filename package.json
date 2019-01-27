@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "",
-    "gulp-js": "SET BUILD_TYPE=js&& gulp",
-    "gulp-sass": "SET BUILD_TYPE=sass&& gulp",
+    "watch-js": "SET BUILD_TYPE=js&& gulp",
+    "watch-sass": "SET BUILD_TYPE=sass&& gulp",
     "build-js": "SET NODE_ENV=production&& SET BUILD_TYPE=js&& gulp",
     "build-sass": "SET NODE_ENV=production&& SET BUILD_TYPE=sass&& gulp",
+    "build-pro": "SET NODE_ENV=production&& gulp",
+    "build-dev": "SET NODE_ENV=development&& gulp",
     "start": "node ./server.js"
   },
   "babel": {
