@@ -128,6 +128,7 @@ class Home extends Component {
             <h3 className="text-info">Block 1</h3>
             <p>Size 4 Offset 0</p>
           </div>
+
           <div className="col-xs-4 col-xs-offset-4">
             <h3 className="text-info">Block 2</h3>
             <p>Size 4 Offset 4</p>

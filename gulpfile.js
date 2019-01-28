@@ -57,10 +57,9 @@ function redText(text){
   return FgRed + text + Reset;
 }
 
-// Compiles JS Files
-function compile(watch) {
-  // Initialize bundler
-  var bundler = watchify(
+
+function buildBundler(){
+  return watchify(
     browserify('./src/index.js', {
       debug: !isProduction,
     })
@@ -72,7 +71,15 @@ function compile(watch) {
       NODE_ENV: isProduction ? 'production' : 'development'
     })
   );
+}
+var bundler = null;
 
+// Compiles JS Files
+function compile(watch) {
+  if ( bundler === null ){
+    bundler = buildBundler();
+  }
+  // Initialize bundler
   function rebundle() {
     log( 'Compiling: ' + cyanText('Javascript Files') + ' in ' + ( isProduction ? cyanText('Production') : redText('Development') ) + ' mode' );
     var stream = bundler
@@ -80,7 +87,7 @@ function compile(watch) {
       .on('error', function (err) {
           log.error('An ' +  redText('ERROR') + ' occurred during JS Compilation');
           log.error(err.stack);
-          // this.emit('end');
+          this.emit('end');
       })
       .pipe(source('script.js'));
     // Create Source Maps if in Dev mode
