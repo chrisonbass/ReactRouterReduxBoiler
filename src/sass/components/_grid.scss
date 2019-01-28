@@ -17,6 +17,12 @@ $increment: 100%/12;
     @include column;
     width: ( $increment * $i );
   }  
+  .col-xs-offset-#{$i}{
+    margin-left: ( $increment * $i );
+  }
+  .hidden-xs {
+    display: none;
+  }
 }
 
 @include smallScreen {
@@ -25,6 +31,13 @@ $increment: 100%/12;
       @include column;
       width: ( $increment * $i );
     }
+    .col-sm-offset-#{$i}{
+      margin-left: ( $increment * $i );
+    }
+    .hidden-sm {
+      display: none;
+    }
+
   }
 }
  
@@ -33,6 +46,12 @@ $increment: 100%/12;
     .col-md-#{$i}{
       @include column;
       width: ( $increment * $i );
+    }
+    .col-md-offset-#{$i}{
+      margin-left: ( $increment * $i );
+    }
+    .hidden-md {
+      display: none;
     }
   }
 }
@@ -43,5 +62,16 @@ $increment: 100%/12;
       @include column;
       width: ( $increment * $i );
     }
+    .col-lg-offset-#{$i}{
+      margin-left: ( $increment * $i );
+    }
+    .hidden-lg {
+      display: none;
+    }
+
   }
+}
+
+.clearfix {
+  @include clearfix; 
 }

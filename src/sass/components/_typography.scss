@@ -1,0 +1,9 @@
+$colorNames: dark-gray darker-gray gray light-gray;
+$colors: $dark-gray $darker-gray $gray $light-gray;
+
+@each $color in $colorNames {
+  $i: index($colorNames, $color);
+  .color-#{$color} {
+    color: nth($colors, $i);
+  }
+}

@@ -69,7 +69,7 @@ class Home extends Component {
           <p>{this.state.label}: {this.state.count}</p>
         </div>
         <div>
-          <select onChange={props.changeSelection} value={this.state.value}>
+          <select className="form-control" onChange={props.changeSelection} value={this.state.value}>
             { props.count.map( (item, index) => {
               return (
                 <option key={index}>{item.label}</option>
@@ -83,9 +83,56 @@ class Home extends Component {
           </button>
           &nbsp;
           &nbsp;
-          <button className="btn btn-danger" onClick={props.decrementCount} type="button"> 
+          <button className="btn btn-error" onClick={props.decrementCount} type="button"> 
             Decrement
           </button>
+        </div>
+        <h2>Grid System</h2>
+        <p className="color-light-gray">col-xs-12 col-sm-6 col-md-4</p>
+        <div className="row show-grid">
+          <div className="col-xs-12 col-sm-6 col-md-4">
+            <h3 className="color-darker-gray">Darker Gray</h3>
+          </div>
+          <div className="col-xs-12 col-sm-6 col-md-4">
+            <h3 className="color-gray">Gray</h3>
+          </div>
+          <div className="col-xs-12 col-sm-6 col-md-4">
+            <h3 className="color-light-gray">Light Gray</h3>
+          </div>
+          <div className="clearfix" />
+        </div>
+        <p className="color-light-gray">col-xs-12 col-sm-6 col-md-4</p>
+        <div className="row show-grid">
+          <div className="col-xs-12 col-sm-6 col-md-3">
+            <h3 className="text-info">Info Color</h3>
+          </div>
+          <div className="col-xs-12 col-sm-6 col-md-3">
+            <h3 className="text-primary">Primary Color</h3>
+          </div>
+          <div className="col-xs-12 col-sm-6 col-md-3">
+            <h3 className="text-success">Success Color</h3>
+          </div>
+          <div className="col-xs-12 col-sm-6 col-md-3">
+            <h3 className="text-error">Error Color</h3>
+          </div>
+          <div className="col-xs-12 col-sm-6 col-md-3">
+            <h3 className="text-warning">Warning Color</h3>
+          </div>
+          <div className="clearfix" />
+        </div>
+
+        <p className="color-light-gray">Example with Offsets</p>
+
+        <div className="row show-grid">
+          <div className="col-xs-4">
+            <h3 className="text-info">Block 1</h3>
+            <p>Size 4 Offset 0</p>
+          </div>
+          <div className="col-xs-4 col-xs-offset-4">
+            <h3 className="text-info">Block 2</h3>
+            <p>Size 4 Offset 4</p>
+          </div>
+          <div className="clearfix" />
         </div>
       </div>
     );

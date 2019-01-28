@@ -1,0 +1,65 @@
+@mixin form-control {
+  @include border-box;
+  background-color: white;
+  border: solid 1px $lighter-gray;
+  padding-top: $gutter * 0.33;
+  padding-bottom: $gutter * 0.33;
+  padding-left: $gutter;
+  padding-right: $gutter;
+  border-radius: $border-radius;
+  font-size: 1em;
+
+}
+
+@mixin button {
+  @include form-control;
+  box-shadow: none;
+}
+
+@mixin button-hover($color) {
+  background-color: darken($color, 15%);
+  box-shadow: inset 0px -2px darken($color, 20%);
+  cursor: pointer;
+}
+
+.form-control {
+  @include form-control;
+  width: 100%;
+}
+
+.btn {
+  @include button;
+}
+
+$names: info primary warning success error;
+$styles: lighten($light-gray, 5%) $primary $warning $success $error;
+$text-colors: $darker-gray white white white white;
+@each $name in $names {
+  $i: index($names, $name);
+  $color: nth($styles, $i);
+  $text-color: nth($text-colors, $i);
+
+  .btn-#{$name} {
+    background-color: $color;
+    border-color: darken($color, 10%);
+    box-shadow: inset 0px 1px lighten($color, 15%);
+    color: $text-color;
+    text-shadow: 0px 2px #4c4c4c;
+
+    &:hover {
+      @include button-hover($color);
+    }
+    &:active {
+      @include button-hover($color);
+    }
+  }
+
+  @if $name == info {
+    $color: $text-color;
+  }
+
+  .text-#{$name} {
+    color: $color;
+  }
+}
+

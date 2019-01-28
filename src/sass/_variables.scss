@@ -2,6 +2,7 @@ $dark-gray: #3e3e3e;
 $darker-gray: darken($dark-gray, 10%);
 $gray: lighten($dark-gray, 10%);
 $light-gray: lighten($gray, 10%);
+$lighter-gray: lighten($light-gray, 10%);
 
 // Responsive Breakpoints 
 $small-break: 768px;
@@ -12,5 +13,16 @@ $large-break: 1200px;
 $gutter: 15px;
 $baseline: 10px;
 
+// Border Radius
+$border-radius: 5px;
+$border-radius-sm: 3px;
+$border-radius-lg: 8px;
 
+// Font Size
 $base-font-size: 14px;
+
+// Colors
+$primary: #3e7cdc;
+$warning: #e0aa2f; 
+$success: #3edc77;
+$error: #dc4e3e;

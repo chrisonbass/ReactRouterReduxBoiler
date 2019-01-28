@@ -2,6 +2,7 @@
 @import "variables";
 @import "mixins";
 
+
 html, body {
   margin: 0;
   padding: 0;
@@ -20,12 +21,24 @@ p {
   margin-bottom: $baseline;
 }
 
+$size: 2.8em;
 @for $i from 1 through 6 {
   h#{$i} {
     @include header;
-    font-size: 1em * ( 1.4 + (( ($i - 6) * -1 )/10));
+    font-size: $size;
   } 
+  $size: $size - 0.4;
 }
 
 @import "assets/fonts";
+@import "components/typography";
 @import "components/grid";
+@import "components/controls";
+
+.show-grid {
+  margin-bottom: $gutter * 0.75;
+  > div[class^="col-"],
+  > div[class*=" col-"] {
+    border: solid 1px $dark-gray;
+  }
+}

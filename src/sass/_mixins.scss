@@ -1,4 +1,4 @@
-@mixin borderBox {
+@mixin border-box {
   box-sizing: border-box;
 }
 
@@ -21,13 +21,22 @@
 }
 
 @mixin column {
-  @include borderBox;
+  @include border-box;
   float: left;
-  padding: 0px $gutter;
+  padding-left: $gutter;
+  padding-right: $gutter;
 }
 
 @mixin header {
-  @include borderBox;
-  margin: ( $baseline * 1.5 ) 0px $baseline;
+  @include border-box;
+  margin: $baseline 0px ( $baseline * 1.5 );
   padding: 0px;
+}
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
 }

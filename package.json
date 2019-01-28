@@ -6,7 +6,9 @@
   "scripts": {
     "test": "",
     "watch": "SET BUILD_TYPE=watch-all&& gulp",
+    "watch-mac": "BUILD_TYPE=watch-all gulp",
     "build": "SET NODE_ENV=production&& gulp",
+    "build-mac": "NODE_ENV=production gulp",
     "start": "node ./server.js"
   },
   "babel": {
