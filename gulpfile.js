@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
   exit = require('gulp-exit'),
-  es = require('event-stream'),
   clean = require('gulp-clean'),
   uglify = require('gulp-uglify'),
   log = require('fancy-log'),
@@ -168,8 +167,6 @@ gulp.task(fullWatch, ['sass', 'build-no-exit'], function () {
     './src/sass/**/*.scss',
     './src/**/*.js'
   ], [ 'sass', 'build-no-exit' ] );
-
-  return es.concat(watch(), watchSass());
 });
 
 gulp.task('Clearing Static Files for new Builds', function(){
