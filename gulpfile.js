@@ -121,7 +121,11 @@ function compile(watch) {
 function compileSass(){
   log( 'Compiling: ' + cyanText('SASS files') + ' in ' + ( isProduction ? redText('Production') : cyanText('Development') ) );
   var stream =  gulp.src('./src/sass/style.scss')
-  .pipe(sass().on('error', sass.logError))
+  .pipe( sass().on('error', function(err){
+    log.error('An ' +  redText('ERROR') + ' occurred during SASS Compilation');
+    log.error(err.stack);
+    this.emit('end');
+  } ) )
   .pipe(autoprefixer({
     browsers: ['last 2 versions']
   }));
